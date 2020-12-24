@@ -1,4 +1,4 @@
-package com.javatechie.aws.sns;
+package com.mayil1993.aws.sns;
 
 import com.amazonaws.services.sns.AmazonSNSClient;
 import com.amazonaws.services.sns.model.PublishRequest;
@@ -20,7 +20,7 @@ public class SpringbootAwsSnsExampleApplication {
     @Autowired
     private AmazonSNSClient snsClient;
 
-    String TOPIC_ARN="" ;
+    String TOPIC_ARN = "arn:aws:sns:us-east-1:449120064446:Mayil1993";
 
 	@GetMapping("/addSubscription/{email}")
 	public String addSubscription(@PathVariable String email) {
@@ -29,6 +29,12 @@ public class SpringbootAwsSnsExampleApplication {
 		return "Subscription request is pending. To confirm the subscription, check your email : " + email;
 	}
 
+	@GetMapping("/addSubscriptionMobile/{mobile}")
+	public String addSubscriptionMobile(@PathVariable String mobile) {
+		SubscribeRequest request = new SubscribeRequest(TOPIC_ARN, "sms", mobile);
+		snsClient.subscribe(request);
+		return "Subscription request is pending. To confirm the subscription, check your email : " + mobile;
+	}
 	 @GetMapping("/sendNotification")
 	public String publishMessageToTopic(){
 		 PublishRequest publishRequest=new PublishRequest(TOPIC_ARN,buildEmailBody(),"Notification: Network connectivity issue");

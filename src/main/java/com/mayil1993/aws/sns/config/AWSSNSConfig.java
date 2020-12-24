@@ -1,4 +1,4 @@
-package com.javatechie.aws.sns.config;
+package com.mayil1993.aws.sns.config;
 
 import com.amazonaws.auth.AWSStaticCredentialsProvider;
 import com.amazonaws.auth.BasicAWSCredentials;
@@ -13,13 +13,13 @@ import org.springframework.context.annotation.Primary;
 public class AWSSNSConfig {
 
 
-    public static final String SECRET_KEY = "";
-    public static final String ACCESS_KEY = "";
+    public static final String SECRET_KEY = "Ln38Yw8BEdndGvmZJLLPw77pcY76rVEVgqxljlVK";
+    public static final String ACCESS_KEY = "AKIAIQYHBVEWVFISVDYA";
 
     @Primary
     @Bean
     public AmazonSNSClient getSnsClient() {
-        return (AmazonSNSClient) AmazonSNSClientBuilder.standard().withRegion(Regions.AP_SOUTH_1)
+        return (AmazonSNSClient) AmazonSNSClientBuilder.standard().withRegion(Regions.US_EAST_1)
                 .withCredentials(new AWSStaticCredentialsProvider(new BasicAWSCredentials(ACCESS_KEY,
                         SECRET_KEY)))
                 .build();
